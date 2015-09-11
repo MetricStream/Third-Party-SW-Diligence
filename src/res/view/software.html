@@ -1,0 +1,30 @@
+<h2>@label.title@</h2>
+<div id="filter_block"><input type="text" name="filter" id="filter" value="@filter@" onkeyup="checkEnter(event)" title="@label.filter@" placeholder="@label.filter@"> &nbsp;<input type="button" value="@label.filter@" onclick="applyFilter()"></div>
+<table>
+<tr>
+  <th>@label.name@</th>
+  <th>@label.vendor@</th>
+  <th>@label.status@</th>
+  <th>@label.requester@</th>
+  <th>@label.url@</th>
+  </tr>
+  @model(<tr><td><a href="./Swform?id=@element.get*(ID)*@">@element.get*(NAME)*@</a></td>
+  <td>@element.get*(VENDOR)*@</td>
+  <td>@element.get*(STATUS)*@</td>
+  <td>@element.get*(REQUESTER_CN)*@</td>
+  <td><a href="@:element.get*(WEBSITE)*@">@element.get*(WEBSITE)*@</a></td>
+  </tr>)@</table>
+  
+  
+  
+  <script>
+   function applyFilter() {
+	   goto(formName+'?filter='+encodeURIComponent(getElement('filter').value));
+   }
+   
+   function checkEnter(e) {
+	   var kc = e?(e.which?e.which:e.keyCode):event.keyCode;
+	   if (kc == 13)
+		   applyFilter();
+   }
+</script>

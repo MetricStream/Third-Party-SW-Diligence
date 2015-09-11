@@ -1,0 +1,19 @@
+<div class="form_header">@label.title@</div>
+
+<form name="swform" method="POST">
+<div><div>@label.name@</div>@.ui.field*(name,java.lang.Object^@model@)*@</div>
+<div><div>@label.vendor@</div>@.ui.field*(vendor,java.lang.Object^@model@)*@</div>
+<div><div>@label.website@</div>@.ui.field*(website,java.lang.Object^@model@)*@</div>
+<div><div>@label.license@</div>@.ui.select*(license,java.lang.Object^@model@)*@</div>
+<!--  think of using smart tags, like text(vendor) -->
+
+<div><div>@label.status@</div>@.ui.select*(status,java.lang.Object^@model@)*@</div>
+<div><div>@label.research_doc@</div>@.ui.field*(research_doc,java.lang.Object^@model@)*@</div>
+<div><div>@label.requester_cn@</div>@.ui.text*(requester_cn,java.lang.Object^@model@,<i>%s</i>)*@</div>
+<div><div>@label.requested_on@</div>@.ui.text*(requested_on,java.lang.Object^@model@,<i>%s</i>)*@</div>
+
+<hr> <!--  this portion can be inherited or smart tag used, like form_endorse() -->
+@.ui.field*(id,java.lang.Object^@model@)*@
+<input type="submit" name="submit" value="@commonlabels.submit@">
+</form>
+
