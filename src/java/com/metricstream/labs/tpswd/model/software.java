@@ -12,9 +12,11 @@ import org.aldan3.annot.DBField;
 import org.aldan3.annot.DataRelation;
 import org.aldan3.annot.FormField;
 import org.aldan3.annot.FormField.FieldType;
+import org.aldan3.data.util.DataFiller;
 
 import com.beegman.webbee.util.GenericResourceOptions;
 import com.beegman.webbee.util.SimpleCoordinator;
+import com.metricstream.labs.tpswd.model.util.ArrayToStrConv;
 import com.metricstream.labs.tpswd.model.util.FileConv;
 import com.metricstream.labs.tpswd.model.util.StatusConv;
 import com.metricstream.labs.tpswd.model.util.URLConv;
@@ -58,6 +60,9 @@ public class software extends SimpleCoordinator<Model> {
 	@FormField(presentFiller=GenericResourceOptions.class, converter=StatusConv.class)
 	public Status status;
 	
+	@DBField(converter=ArrayToStrConv.class,type="varchar(4000)")
+	@FormField(presentFiller=DataFiller.class, fillQuery = "select id, name, description from module where CURRENT_TIMESTAMP() <= COALESCE(end_date,CURRENT_TIMESTAMP()) order by name", 
+	queryResultMap = {"ID", "NAME", "DESCRIPTION"})
 	public String[] modules;
 	
 	@DBField(type="varchar(256)",converter=FileConv.class)
@@ -72,6 +77,8 @@ public class software extends SimpleCoordinator<Model> {
 	@FormField(presentType=FieldType.Readonly)
 	public Date requested_on;
 	
+	@DBField
+	// shold it be automatically populated on approval or manually corrected too?
 	public Date effective_on;
 
 }

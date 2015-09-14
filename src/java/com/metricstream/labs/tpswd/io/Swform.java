@@ -3,6 +3,7 @@
  */
 package com.metricstream.labs.tpswd.io;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import org.aldan3.model.ProcessException;
@@ -24,6 +25,7 @@ public class Swform extends Form<software, Model> {
 		try {
 			log("Load %d", null, sw.id);
 			getAppModel().getDOService().getObjectLike(new DODU<software>(sw, "", "id"));
+			log("Modules %s", null, Arrays.toString(sw.modules));
 		} catch (ProcessException e) {
 			log("", e);
 		}
